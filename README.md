@@ -18,8 +18,6 @@ No build step: plain HTML, one token-driven CSS system, and light vanilla JS.
 
 The home page also carries a "Spot the signs" teaser and customer reviews; the plans page adds a Perimeter-vs-one-off-vs-DIY comparison table. All eight pages are live — no `soon` stubs remain. Reviews and Careers live in the footer (the top nav is kept to six items).
 
-`Reviews` / `Careers` are still marked **soon** in the footer — stubs to build next.
-
 ## Run it
 
 Open `index.html` in a browser, or serve the folder:
@@ -39,14 +37,50 @@ offline they fall back to system sans/mono gracefully.
   "guaranteed / safe for kids & pets" moments only.
 - **Company name** — search for `Perimeter` / `Perimeter Pest Control`, the phone
   `(800) 555-0199`, and `hello@perimeterpest.com`.
+- **Domain** — the site uses `https://perimeterpest.com` as a placeholder in every
+  canonical URL, Open Graph tag, `sitemap.xml`, `robots.txt`, and JSON-LD block.
+  **Replace it with your real domain before launch** (a single find-and-replace).
+- **Legal pages** — `privacy.html`, `terms.html`, and `cookies.html` are sample text
+  with `[bracketed placeholders]`. Fill them in and have them reviewed by counsel.
 - **Plans** — plan content lives in the `.plan` cards in `index.html` and `plans.html`.
   The booking plan options are the `<label class="choice choice-plan">` blocks in
   `booking.html`.
 - **Booking** — [`assets/js/booking.js`](assets/js/booking.js) handles step
-  navigation, validation, the live summary, and the success screen. It does **not**
-  submit anywhere yet — wire the `form.submit` handler to your CRM / email endpoint.
-  A plan can be pre-selected via `booking.html?plan=yard-enjoyment`; you can deep-link
-  a step with `&step=3`.
+  navigation, validation, the live summary, and the success screen. A plan can be
+  pre-selected via `booking.html?plan=yard-enjoyment`; deep-link a step with `&step=3`.
+
+## Integration points
+
+By design, this template ships **front-end only** — forms validate and show a success
+state client-side but don't send anything yet. That's intentional: it keeps the template
+tool-agnostic so you can connect whatever stack you already use. Each seam is one small,
+clearly-marked handler:
+
+| Where | File | Hook it to |
+| --- | --- | --- |
+| Booking request | `assets/js/booking.js` (`form.addEventListener("submit", …)`) | Your scheduler/CRM (Jobber, Housecall Pro, ServiceTitan), or Formspree / Netlify Forms / a Zapier webhook |
+| Contact message | `assets/js/contact.js` (submit handler) | Same as above, or a plain email endpoint |
+| Careers "Apply" | `mailto:careers@…` links in `careers.html` | An ATS/job board, or leave as mailto |
+| Reviews | static cards in `reviews.html` | Optionally pull live from the Google Places API |
+| Analytics | none yet | Add GA4 / Meta Pixel and fire events on Book / Call / submit |
+
+Swap the demo contact details everywhere first (see **Customize → Company name**), then
+wire the two form handlers. See [`ROADMAP.md`](ROADMAP.md) for the full quality/conversion checklist.
+
+## SEO &amp; metadata
+
+Every page ships search-ready:
+
+- Unique `<title>` + meta description, **canonical**, **Open Graph**, and **Twitter
+  card** tags, all pointing at a branded 1200×630 share image (`assets/og/og-default.png`).
+- **JSON-LD structured data**: `LocalBusiness` (home/contact) with aggregate rating,
+  `FAQPage` (plans), `AggregateRating` + `Review` (reviews), and `JobPosting` (careers)
+  — the markup Google uses for rich results.
+- `sitemap.xml`, `robots.txt`, `site.webmanifest`, and an SVG favicon.
+- A `noindex` on-brand `404.html`, plus `privacy.html` / `terms.html` / `cookies.html`.
+
+After launch, submit `sitemap.xml` in Google Search Console and validate the structured
+data with Google's Rich Results Test.
 
 ## Accessibility
 

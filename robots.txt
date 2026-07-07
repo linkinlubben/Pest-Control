@@ -1,0 +1,6 @@
+# Perimeter Pest Control — robots.txt
+# Replace the domain below with your live domain before launch.
+User-agent: *
+Allow: /
+
+Sitemap: https://perimeterpest.com/sitemap.xml

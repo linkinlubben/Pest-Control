@@ -453,8 +453,11 @@ h1, h2, h3, h4 {
 .footer-col a:hover { color: #fff; }
 .footer-col .is-soon { color: #647d9b; }
 .footer-col .is-soon::after { content: " · soon"; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; }
-.footer-bottom { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center; margin-top: 2.5rem; padding-top: 1.75rem; border-top: 1px solid rgba(255,255,255,.1); font-size: .85rem; color: #7d94b1; }
+.footer-bottom { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; justify-content: space-between; align-items: center; margin-top: 2.5rem; padding-top: 1.75rem; border-top: 1px solid rgba(255,255,255,.1); font-size: .85rem; color: #7d94b1; }
 .footer-bottom .disclaimer { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .02em; }
+.footer-legal { display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; }
+.footer-legal a { color: #9db3cc; transition: color .15s var(--ease); }
+.footer-legal a:hover { color: #fff; }
 @media (max-width: 780px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-grid > :first-child { grid-column: 1 / -1; } }
 @media (max-width: 460px) { .footer-grid { grid-template-columns: 1fr; } }
 
@@ -742,6 +745,39 @@ h1, h2, h3, h4 {
 .role .r-list li { display: grid; grid-template-columns: 22px 1fr; gap: .6rem; color: var(--ink-soft); font-size: .94rem; align-items: start; }
 .role .r-list .tick { color: var(--brand); margin-top: 2px; flex: none; }
 .role .r-apply { margin-top: 1.4rem; }
+
+/* =========================================================================
+   Legal pages (privacy / terms / cookies)
+   ========================================================================= */
+.legal { max-width: 760px; }
+.legal .updated { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: .08em; text-transform: uppercase; color: var(--slate-2); }
+.legal .legal-note { display: flex; gap: .75rem; background: var(--brand-tint); border: 1px solid var(--brand-tint-2); border-radius: var(--r-md); padding: 1rem 1.25rem; color: var(--ink-soft); font-size: .93rem; line-height: 1.55; margin: 1.75rem 0; }
+.legal .legal-note svg { flex: none; color: var(--brand); margin-top: 2px; }
+.legal h2 { font-size: var(--step-2); margin-top: 2.75rem; }
+.legal h3 { font-size: var(--step-1); margin-top: 1.9rem; }
+.legal p { color: var(--slate); line-height: 1.7; margin-top: 1rem; }
+.legal ul, .legal ol { margin-top: 1rem; padding-left: 1.3rem; display: grid; gap: .55rem; }
+.legal ul { list-style: disc; }
+.legal ol { list-style: decimal; }
+.legal li { color: var(--slate); line-height: 1.6; padding-left: .2rem; }
+.legal li b { color: var(--ink-soft); }
+.legal a { color: var(--brand); text-decoration: underline; text-underline-offset: 2px; }
+.legal a:hover { color: var(--brand-600); }
+.legal .toc { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+.legal .toc a { display: inline-flex; text-decoration: none; font-size: .85rem; font-weight: 600; color: var(--ink-soft); background: #fff; border: 1px solid var(--line); border-radius: var(--r-pill); padding: .4rem .9rem; }
+.legal .toc a:hover { border-color: var(--brand); color: var(--brand); }
+
+/* =========================================================================
+   404
+   ========================================================================= */
+.notfound { text-align: center; padding-block: clamp(3.5rem, 10vw, 7rem); }
+.notfound .code { font-family: var(--font-display); font-weight: 800; font-size: clamp(5rem, 20vw, 10rem); line-height: .9; color: var(--brand); letter-spacing: -.03em; }
+.notfound h1 { font-size: var(--step-3); margin-top: 1rem; }
+.notfound p { color: var(--slate); font-size: var(--step-1); max-width: 46ch; margin: 1rem auto 0; }
+.notfound .hero-actions { justify-content: center; margin-top: 2rem; }
+.notfound .quicklinks { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
+.notfound .quicklinks a { font-size: .9rem; font-weight: 600; color: var(--ink-soft); background: #fff; border: 1px solid var(--line); border-radius: var(--r-pill); padding: .5rem 1rem; transition: border-color .15s var(--ease), color .15s var(--ease); }
+.notfound .quicklinks a:hover { border-color: var(--brand); color: var(--brand); }
 
 /* =========================================================================
    Scroll reveal (progressive enhancement)
