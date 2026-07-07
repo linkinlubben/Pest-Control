@@ -64,8 +64,19 @@ clearly-marked handler:
 | Reviews | static cards in `reviews.html` | Optionally pull live from the Google Places API |
 | Analytics | none yet | Add GA4 / Meta Pixel and fire events on Book / Call / submit |
 
-Swap the demo contact details everywhere first (see **Customize → Company name**), then
-wire the two form handlers. See [`ROADMAP.md`](ROADMAP.md) for the full quality/conversion checklist.
+### Going live — just paste your keys
+
+The plumbing is already built. Everything is driven from one file,
+[`assets/js/config.js`](assets/js/config.js) — no other code changes:
+
+| Config value | What to paste | Effect |
+| --- | --- | --- |
+| `bookingEndpoint` / `contactEndpoint` | A Formspree form URL, webhook, or CRM endpoint | Forms `POST` JSON there with a sending → success (or error) state. Blank = demo mode. |
+| `analyticsId` | Your GA4 Measurement ID (`G-…`) | Analytics loads automatically and fires `book_click`, `phone_click`, and `*_submit` events. |
+| `recaptchaSiteKey` | *(optional)* reCAPTCHA v3 site key | Adds a token to submissions. A honeypot field already blocks basic spam with no key. |
+
+Both forms already validate, show a spinner while sending, and surface a friendly error
+if the endpoint fails. See [`ROADMAP.md`](ROADMAP.md) for the full quality/conversion checklist.
 
 ## SEO &amp; metadata
 

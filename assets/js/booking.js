@@ -225,6 +225,30 @@
   });
 
   /* ---- Submit ---- */
+  var bookingError = document.getElementById("bookingFormError");
+
+  function showBookingError(msg) {
+    if (!bookingError) return;
+    bookingError.textContent = msg;
+    bookingError.classList.add("is-shown");
+    bookingError.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function finishBooking(d, ref) {
+    document.getElementById("doneName").textContent = valById("firstName") || "friend";
+    var html = "";
+    html += row("Reference", '<span style="font-family:var(--font-mono)">' + ref + "</span>");
+    html += row("Plan", esc(d.plan));
+    html += row("Date", esc(d.date) + (d.window ? " · " + esc(d.window) : ""));
+    html += row("Address", esc(d.address) + (d.cityzip ? ", " + esc(d.cityzip) : ""));
+    document.getElementById("doneRecap").innerHTML = html;
+    document.getElementById("bookingLayout").style.display = "none";
+    document.getElementById("bookingIntro").style.display = "none";
+    var done = document.getElementById("bookingDone");
+    done.classList.add("is-active");
+    done.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     // validate all steps in order; jump to the first that fails
@@ -234,19 +258,29 @@
     var d = collect();
     var ref = "PPC-" + String(Math.floor(100000 + Math.random() * 900000));
 
-    document.getElementById("doneName").textContent = valById("firstName") || "friend";
-    var html = "";
-    html += row("Reference", '<span style="font-family:var(--font-mono)">' + ref + "</span>");
-    html += row("Plan", esc(d.plan));
-    html += row("Date", esc(d.date) + (d.window ? " · " + esc(d.window) : ""));
-    html += row("Address", esc(d.address) + (d.cityzip ? ", " + esc(d.cityzip) : ""));
-    document.getElementById("doneRecap").innerHTML = html;
+    // Honeypot: a filled hidden field means a bot — accept quietly, don't send.
+    var hp = form.querySelector('input[name="_gotcha"]');
+    if (hp && hp.value) { finishBooking(d, ref); return; }
+    if (bookingError) bookingError.classList.remove("is-shown");
 
-    document.getElementById("bookingLayout").style.display = "none";
-    document.getElementById("bookingIntro").style.display = "none";
-    var done = document.getElementById("bookingDone");
-    done.classList.add("is-active");
-    done.scrollIntoView({ behavior: "smooth", block: "start" });
+    var payload = {
+      form: "booking", reference: ref, plan: d.plan, billing: d.cycle,
+      name: d.name, email: d.email, phone: d.phone,
+      address: d.address, cityZip: d.cityzip, propertyType: d.propType, homeSize: d.size,
+      concerns: d.concerns, date: d.date, arrivalWindow: d.window, notes: d.notes
+    };
+
+    window.ppcSubmitForm({
+      endpoint: (window.PerimeterConfig || {}).bookingEndpoint,
+      action: "booking",
+      button: confirmBtn,
+      loadingText: "Sending…",
+      payload: payload,
+      onSuccess: function () { finishBooking(d, ref); },
+      onError: function () {
+        showBookingError("Something went wrong sending your request. Please try again, or call us at (800) 555-0199.");
+      }
+    });
   });
 
   /* ---- Init ---- */

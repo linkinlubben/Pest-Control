@@ -103,6 +103,7 @@
       <div class="booking-layout" id="bookingLayout">
         <!-- ---------- FORM ---------- -->
         <form class="booking-form" id="bookingForm" novalidate>
+          <div class="visually-hidden" aria-hidden="true"><label>Leave this field empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
 
           <!-- STEP 1: Plan -->
           <div class="step-panel is-active" data-step="1">
@@ -276,6 +277,8 @@
             </div>
           </div>
 
+          <p class="form-error" id="bookingFormError" role="alert"></p>
+
           <!-- Form nav -->
           <div class="form-nav">
             <button type="button" class="btn btn--ghost" id="backBtn" hidden>
@@ -385,6 +388,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/config.js" defer></script>
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/booking.js" defer></script>
 </body>

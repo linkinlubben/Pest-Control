@@ -491,6 +491,13 @@ h1, h2, h3, h4 {
 .check-row input[type="checkbox"] { flex: none; width: 20px; height: 20px; margin-top: .15rem; accent-color: var(--brand); cursor: pointer; }
 .check-row label { font-weight: 500; color: var(--ink-soft); line-height: 1.5; }
 
+/* Form-level error banner + button "sending" state */
+.form-error { display: none; margin-top: 1rem; padding: .85rem 1.1rem; border-radius: var(--r-md); background: #fbe9ec; border: 1px solid #f3c2cb; color: #a3283b; font-size: .92rem; font-weight: 500; line-height: 1.45; }
+.form-error.is-shown { display: block; }
+.btn[data-loading="true"] { pointer-events: none; opacity: .85; }
+.btn[data-loading="true"]::before { content: ""; width: 15px; height: 15px; border-radius: 50%; border: 2px solid currentColor; border-top-color: transparent; animation: ppc-spin .7s linear infinite; }
+@keyframes ppc-spin { to { transform: rotate(360deg); } }
+
 /* Shared success panel (contact form) */
 .form-success { display: none; }
 .form-success.is-active { display: block; }
@@ -791,6 +798,7 @@ h1, h2, h3, h4 {
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
   .perimeter-ring, .pest-mark { animation: none !important; }
+  .btn[data-loading="true"]::before { animation: none !important; }
   .btn, .plan, .season, .btn:hover { transition: none !important; }
   *:hover { transform: none !important; }
 }

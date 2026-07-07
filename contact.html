@@ -99,6 +99,7 @@
             <h2>Send us a note</h2>
             <p class="sub">We reply within one business day. For an urgent issue, calling is fastest.</p>
             <form id="contactForm" novalidate>
+              <div class="visually-hidden" aria-hidden="true"><label>Leave this field empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
               <div class="grid-2">
                 <div class="field" id="c-firstName">
                   <label for="firstName">First name <span class="req">*</span></label>
@@ -146,6 +147,7 @@
                 </div>
                 <span class="error-msg">Please agree so we can reply.</span>
               </div>
+              <p class="form-error" id="contactFormError" role="alert"></p>
               <button type="submit" class="btn btn--lg btn--block">
                 Send message
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
@@ -253,6 +255,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/config.js" defer></script>
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/contact.js" defer></script>
 </body>
