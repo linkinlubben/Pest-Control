@@ -22,6 +22,8 @@
   --safe:       #1FA971;   /* emerald — safety / guarantee accent */
   --safe-600:   #178a5c;
   --safe-tint:  #E7F6EF;
+  --gold:       #E8A33D;   /* review stars only */
+  --danger:     #C23A50;   /* "no" in comparisons, form errors */
 
   --paper:      #FBFCFE;   /* page background (cool near-white) */
   --card:       #FFFFFF;
@@ -100,6 +102,11 @@ h1, h2, h3, h4 {
 }
 
 ::selection { background: color-mix(in srgb, var(--brand) 22%, white); color: var(--ink); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 
 .skip-link {
   position: absolute; left: 12px; top: -60px;
@@ -213,7 +220,7 @@ h1, h2, h3, h4 {
   transition: border-color .25s var(--ease), background .25s var(--ease), box-shadow .25s var(--ease);
 }
 .site-header.is-stuck { border-color: var(--line); box-shadow: var(--shadow-sm); }
-.nav { display: flex; align-items: center; gap: 1.5rem; height: 76px; }
+.nav { display: flex; align-items: center; gap: 1.15rem; height: 76px; }
 
 .brand { display: inline-flex; align-items: center; gap: .65rem; font-family: var(--font-display); font-weight: 700; color: var(--ink); font-size: 1.18rem; letter-spacing: -.02em; }
 .brand:hover .brandmark .ring { stroke-dashoffset: 0; }
@@ -221,11 +228,12 @@ h1, h2, h3, h4 {
 .brandmark .ring { stroke-dasharray: 4 4; stroke-dashoffset: 8; transition: stroke-dashoffset .6s var(--ease); }
 .brand-name small { display: block; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .22em; color: var(--slate-2); font-weight: 500; margin-top: 2px; text-transform: uppercase; }
 
-.nav-links { display: flex; align-items: center; gap: .3rem; margin-left: auto; }
+.nav-links { display: flex; align-items: center; gap: .1rem; margin-left: auto; }
 .nav-links a {
-  padding: .55rem .85rem; border-radius: var(--r-pill); color: var(--ink-soft);
-  font-weight: 500; font-size: .96rem; transition: background .16s var(--ease), color .16s var(--ease);
+  padding: .5rem .72rem; border-radius: var(--r-pill); color: var(--ink-soft);
+  font-weight: 500; font-size: .94rem; white-space: nowrap; transition: background .16s var(--ease), color .16s var(--ease);
 }
+@media (max-width: 1140px) and (min-width: 1025px) { .nav-phone { display: none; } }
 .nav-links a:hover { background: var(--brand-tint); color: var(--brand); }
 .nav-links a[aria-current="page"] { color: var(--brand); }
 .nav-links a.is-soon { color: var(--slate-2); cursor: default; }
@@ -578,6 +586,162 @@ h1, h2, h3, h4 {
 .faq summary .ico { flex: none; color: var(--brand); transition: transform .22s var(--ease); }
 .faq details[open] summary .ico { transform: rotate(45deg); }
 .faq .faq-body { padding: 0 1.4rem 1.3rem; color: var(--slate); line-height: 1.55; }
+
+/* =========================================================================
+   Spot the signs — teaser cards (home)
+   ========================================================================= */
+.signs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+@media (max-width: 800px) { .signs-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .signs-grid { grid-template-columns: 1fr; } }
+.sign { background: #fff; border: 1px solid var(--line); border-radius: var(--r-md); padding: 1.5rem; transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
+.sign:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.sign .s-emoji { font-size: 1.7rem; line-height: 1; }
+.sign h3 { font-size: var(--step-1); margin-top: .7rem; }
+.sign p { color: var(--slate); font-size: .93rem; margin-top: .45rem; line-height: 1.5; }
+.sign .points { margin-top: 1rem; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .06em; text-transform: uppercase; color: var(--brand); display: inline-flex; align-items: center; gap: .45rem; }
+.sign .points svg { flex: none; }
+
+/* =========================================================================
+   Reviews / testimonials
+   ========================================================================= */
+.reviews-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.25rem; margin-bottom: clamp(1.75rem, 3vw, 2.5rem); }
+.reviews-head .section-head { margin-bottom: 0; }
+.rating-badge { display: inline-flex; align-items: center; gap: .7rem; background: #fff; border: 1px solid var(--line); border-radius: var(--r-pill); padding: .6rem 1.1rem; box-shadow: var(--shadow-sm); flex: none; }
+.rating-badge .score { font-family: var(--font-display); font-weight: 800; font-size: var(--step-2); color: var(--ink); line-height: 1; }
+.rating-badge .stars { display: flex; gap: .1rem; color: var(--gold); }
+.rating-badge .meta { font-size: var(--step--1); color: var(--slate); line-height: 1.2; }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2vw, 1.5rem); }
+@media (max-width: 900px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px) { .reviews-grid { grid-template-columns: 1fr; } }
+.review { display: flex; flex-direction: column; gap: 1rem; background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 1.7rem; box-shadow: var(--shadow-sm); transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
+.review:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.review .stars { display: flex; gap: .12rem; color: var(--gold); }
+.review blockquote { font-size: 1.06rem; line-height: 1.55; color: var(--ink-soft); }
+.review blockquote .hl { color: var(--ink); font-weight: 600; }
+.review .who { display: flex; align-items: center; gap: .8rem; margin-top: auto; }
+.review .who .ava { width: 44px; height: 44px; border-radius: 50%; background: var(--brand-tint); color: var(--brand); display: grid; place-items: center; font-weight: 700; font-family: var(--font-display); flex: none; }
+.review .who .n { font-weight: 700; color: var(--ink); font-size: .95rem; }
+.review .who .loc { font-size: .82rem; color: var(--slate); }
+.review .verified { display: inline-flex; align-items: center; gap: .3rem; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; color: var(--safe-600); }
+
+/* =========================================================================
+   Comparison table (plans)
+   ========================================================================= */
+.compare-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-sm); background: #fff; -webkit-overflow-scrolling: touch; }
+.compare { width: 100%; border-collapse: collapse; min-width: 660px; }
+.compare th, .compare td { padding: 1.05rem 1.2rem; text-align: center; border-bottom: 1px solid var(--line); }
+.compare thead th { position: sticky; top: 0; font-family: var(--font-display); font-size: var(--step-0); font-weight: 700; background: var(--brand-tint); color: var(--ink); }
+.compare thead th.is-us { background: var(--brand); color: #fff; border-top-right-radius: 0; }
+.compare thead th small { display: block; font-family: var(--font-mono); font-weight: 400; font-size: .6rem; letter-spacing: .08em; text-transform: uppercase; opacity: .75; margin-top: .2rem; }
+.compare tbody th { text-align: left; font-weight: 600; color: var(--ink-soft); font-size: .95rem; background: #fff; }
+.compare td { color: var(--slate); font-size: .93rem; }
+.compare td.is-us { background: color-mix(in srgb, var(--brand-tint) 55%, #fff); color: var(--ink); font-weight: 600; }
+.compare tr:last-child th, .compare tr:last-child td { border-bottom: 0; }
+.compare .ic { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; }
+.compare .ic.yes { background: var(--safe-tint); color: var(--safe-600); }
+.compare .ic.no { background: #fbe9ec; color: var(--danger); }
+.compare .ic.meh { background: #eef1f6; color: var(--slate-2); }
+
+/* =========================================================================
+   Timeline (about)
+   ========================================================================= */
+.timeline { display: grid; gap: 0; max-width: 760px; }
+.milestone { display: grid; grid-template-columns: 84px 1fr; gap: clamp(1rem, 2.5vw, 1.75rem); padding-bottom: 2.25rem; position: relative; }
+.milestone::before { content: ""; position: absolute; left: 7px; top: 20px; bottom: -4px; border-left: 2px dashed var(--line-strong); }
+.milestone:last-child { padding-bottom: 0; }
+.milestone:last-child::before { display: none; }
+.milestone .yr { position: relative; font-family: var(--font-display); font-weight: 800; color: var(--brand); font-size: 1.1rem; padding-left: 26px; }
+.milestone .yr::before { content: ""; position: absolute; left: 0; top: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 3px solid var(--brand); }
+.milestone:last-child .yr::before { border-color: var(--safe); }
+.milestone .m-body h3 { font-size: var(--step-1); }
+.milestone .m-body p { color: var(--slate); margin-top: .4rem; line-height: 1.55; }
+
+/* Pull-quote */
+.pullquote { border-left: 3px dashed var(--brand); padding: .4rem 0 .4rem 1.5rem; margin: 0; }
+.pullquote p { font-family: var(--font-display); font-weight: 500; font-size: var(--step-2); line-height: 1.25; color: var(--ink); letter-spacing: -.01em; }
+.pullquote cite { display: block; margin-top: 1rem; font-style: normal; font-size: var(--step--1); color: var(--slate); }
+.pullquote cite b { color: var(--ink); font-style: normal; }
+
+/* =========================================================================
+   Pest field guide (pests.html)
+   ========================================================================= */
+.pest-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2vw, 1.5rem); }
+@media (max-width: 720px) { .pest-grid { grid-template-columns: 1fr; } }
+.pest-card { display: grid; grid-template-columns: auto 1fr; gap: clamp(1rem, 2vw, 1.4rem); background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.35rem, 2.5vw, 1.75rem); box-shadow: var(--shadow-sm); transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
+.pest-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.pest-card .p-ico { width: 60px; height: 60px; border-radius: 16px; background: var(--brand-tint); display: grid; place-items: center; font-size: 1.9rem; line-height: 1; align-self: start; }
+.pest-card .p-head { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
+.pest-card h3 { font-size: var(--step-2); }
+.pest-card .p-row { margin-top: .9rem; }
+.pest-card .p-row .lbl { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--font-mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--brand); }
+.pest-card .p-row.is-risk .lbl { color: var(--danger); }
+.pest-card .p-row p { color: var(--slate); font-size: .93rem; line-height: 1.5; margin-top: .25rem; }
+.pest-card .p-foot { margin-top: 1.1rem; padding-top: 1rem; border-top: 1px dashed var(--line); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem; }
+.pest-card .p-plan { font-size: .85rem; color: var(--ink-soft); }
+.pest-card .p-plan b { color: var(--brand); font-weight: 600; }
+@media (max-width: 420px) { .pest-card { grid-template-columns: 1fr; } }
+
+/* Two-up prose feature (generic, used on pests intro) */
+.prose-narrow { max-width: 65ch; }
+.prose-narrow p { color: var(--slate); font-size: var(--step-1); line-height: 1.6; }
+.prose-narrow p + p { margin-top: 1.1rem; }
+
+/* =========================================================================
+   Reviews page — rating summary, filters, masonry wall
+   ========================================================================= */
+.rating-summary { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.5rem, 3vw, 2.5rem); box-shadow: var(--shadow-sm); }
+@media (max-width: 640px) { .rating-summary { grid-template-columns: 1fr; text-align: center; } }
+.rating-summary .rs-score { padding-right: clamp(1.5rem, 3vw, 2.5rem); border-right: 1px dashed var(--line); }
+@media (max-width: 640px) { .rating-summary .rs-score { padding-right: 0; padding-bottom: 1.5rem; border-right: 0; border-bottom: 1px dashed var(--line); } }
+.rating-summary .rs-num { font-family: var(--font-display); font-weight: 800; font-size: clamp(3rem, 8vw, 4.5rem); color: var(--ink); line-height: 1; }
+.rating-summary .rs-stars { display: flex; gap: .15rem; color: var(--gold); margin-top: .5rem; }
+@media (max-width: 640px) { .rating-summary .rs-stars { justify-content: center; } }
+.rating-summary .rs-count { color: var(--slate); font-size: var(--step--1); margin-top: .6rem; white-space: nowrap; }
+.bars { display: grid; gap: .55rem; min-width: 0; }
+.bar-row { display: grid; grid-template-columns: 38px 1fr 40px; gap: .8rem; align-items: center; }
+.bar-row .bl { font-family: var(--font-mono); font-size: .72rem; color: var(--ink-soft); white-space: nowrap; }
+.bar-track { height: 9px; border-radius: var(--r-pill); background: var(--brand-tint); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: var(--r-pill); background: var(--brand); }
+.bar-row .bp { text-align: right; font-size: .82rem; color: var(--slate); font-variant-numeric: tabular-nums; }
+.platforms { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; justify-content: center; align-items: center; color: var(--slate); font-size: var(--step--1); }
+.platforms b { color: var(--ink); font-weight: 700; }
+
+.review-filters { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; }
+.filter-chip { border: 1.5px solid var(--line-strong); background: #fff; color: var(--ink-soft); border-radius: var(--r-pill); padding: .55rem 1.1rem; font-weight: 600; font-size: .9rem; cursor: pointer; transition: background .16s var(--ease), color .16s var(--ease), border-color .16s var(--ease); }
+.filter-chip:hover { border-color: var(--brand); color: var(--brand); }
+.filter-chip.is-active { background: var(--brand); border-color: var(--brand); color: #fff; }
+
+.reviews-masonry { columns: 3 280px; column-gap: clamp(1rem, 2vw, 1.5rem); }
+.reviews-masonry .review { break-inside: avoid; margin-bottom: clamp(1rem, 2vw, 1.5rem); }
+.review.is-hidden { display: none; }
+.review .tag { display: inline-flex; align-items: center; gap: .4rem; align-self: flex-start; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; color: var(--brand-700); background: var(--brand-tint); border: 1px solid var(--brand-tint-2); padding: .3rem .6rem; border-radius: var(--r-pill); }
+.reviews-empty { text-align: center; color: var(--slate); padding: 2rem 0; display: none; }
+
+/* =========================================================================
+   Careers page — perks + roles
+   ========================================================================= */
+.perks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2vw, 1.5rem); }
+@media (max-width: 820px) { .perks-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .perks-grid { grid-template-columns: 1fr; } }
+.perk { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 1.7rem; box-shadow: var(--shadow-sm); transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
+.perk:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.perk .p-ico { width: 48px; height: 48px; border-radius: 13px; background: var(--brand-tint); color: var(--brand); display: grid; place-items: center; margin-bottom: 1rem; }
+.perk.is-safe .p-ico { background: var(--safe-tint); color: var(--safe-600); }
+.perk h3 { font-size: var(--step-1); }
+.perk p { color: var(--slate); font-size: .92rem; margin-top: .45rem; line-height: 1.5; }
+
+.roles { display: grid; gap: 1rem; }
+.role { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.4rem, 2.5vw, 2rem); box-shadow: var(--shadow-sm); transition: border-color .18s var(--ease), box-shadow .18s var(--ease); }
+.role:hover { border-color: var(--brand-tint-2); box-shadow: var(--shadow-md); }
+.role .r-top { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 1rem 1.5rem; }
+.role h3 { font-size: var(--step-2); }
+.role .r-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .7rem; }
+.role .r-pay { font-family: var(--font-mono); font-size: var(--step--1); color: var(--safe-600); font-weight: 500; white-space: nowrap; padding-top: .3rem; }
+.role .r-desc { color: var(--slate); margin-top: 1.1rem; line-height: 1.55; max-width: 62ch; }
+.role .r-list { margin-top: 1.1rem; display: grid; gap: .55rem; }
+.role .r-list li { display: grid; grid-template-columns: 22px 1fr; gap: .6rem; color: var(--ink-soft); font-size: .94rem; align-items: start; }
+.role .r-list .tick { color: var(--brand); margin-top: 2px; flex: none; }
+.role .r-apply { margin-top: 1.4rem; }
 
 /* =========================================================================
    Scroll reveal (progressive enhancement)

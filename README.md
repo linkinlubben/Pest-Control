@@ -10,8 +10,13 @@ No build step: plain HTML, one token-driven CSS system, and light vanilla JS.
 | `index.html` | Home — hero with a **"See our plans"** CTA, trust strip, plan preview, 4-step process, guarantee, seasonal pest calendar, CTA band. |
 | `plans.html` | Full plan detail (Home Protection · Yard Enjoyment · Termite Defense), "every plan includes" band, FAQ. |
 | `booking.html` | Guided 4-step booking UI (plan → property → schedule → confirm) with a live summary rail. |
-| `about.html` | Story, values, by-the-numbers, team, and credentials. |
+| `about.html` | Story, founder quote, values, by-the-numbers, story timeline, team, credentials. |
 | `contact.html` | Contact form (validated, with success state) + direct-contact card. |
+| `pests.html` | Pest field guide — 8 pest profiles (signs, why it matters, which plan). |
+| `reviews.html` | Rating breakdown + filterable wall of reviews (`reviews.js`). |
+| `careers.html` | Perks, open roles (Apply → mailto), hiring steps, team quote. |
+
+The home page also carries a "Spot the signs" teaser and customer reviews; the plans page adds a Perimeter-vs-one-off-vs-DIY comparison table. All eight pages are live — no `soon` stubs remain. Reviews and Careers live in the footer (the top nav is kept to six items).
 
 `Reviews` / `Careers` are still marked **soon** in the footer — stubs to build next.
 
