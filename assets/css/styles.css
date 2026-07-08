@@ -267,6 +267,7 @@ h1, h2, h3, h4 {
   .mobile-menu.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
   .mobile-menu a { padding: .85rem .5rem; border-bottom: 1px solid var(--line); font-weight: 600; color: var(--ink); }
   .mobile-menu a.is-soon { color: var(--slate-2); }
+  .mobile-menu a[aria-current="page"] { color: var(--brand); }
   .mobile-menu .btn { margin-top: 1rem; }
 }
 @media (min-width: 1025px) { .mobile-menu { display: none; } }
@@ -752,6 +753,24 @@ h1, h2, h3, h4 {
 .role .r-list li { display: grid; grid-template-columns: 22px 1fr; gap: .6rem; color: var(--ink-soft); font-size: .94rem; align-items: start; }
 .role .r-list .tick { color: var(--brand); margin-top: 2px; flex: none; }
 .role .r-apply { margin-top: 1.4rem; }
+
+/* =========================================================================
+   Showcase band (illustration/photo beside copy) + photo-ready media slot
+   ========================================================================= */
+.showcase { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+@media (max-width: 860px) { .showcase { grid-template-columns: 1fr; gap: 2rem; } .showcase .showcase-art { order: -1; } }
+.showcase-art img { display: block; width: 100%; height: auto; border-radius: var(--r-lg); box-shadow: var(--shadow-lg); }
+.showcase-copy .hero-actions { margin-top: 1.75rem; }
+
+/* Photo slot — drop in <img> to use a real photo; shows a branded placeholder until then */
+.media { position: relative; border-radius: var(--r-lg); overflow: hidden; background: var(--brand-tint); border: 1px dashed var(--line-strong); box-shadow: var(--shadow-sm); }
+.media.ratio-16x9 { aspect-ratio: 16 / 9; }
+.media.ratio-4x3 { aspect-ratio: 4 / 3; }
+.media.ratio-1x1 { aspect-ratio: 1 / 1; }
+.media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.media-ph { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: .7rem; text-align: center; padding: 1rem; }
+.media-ph .ph-mark { width: 52px; height: 52px; color: var(--brand); opacity: .8; }
+.media-ph .ph-label { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--brand-700); }
 
 /* =========================================================================
    Legal pages (privacy / terms / cookies)

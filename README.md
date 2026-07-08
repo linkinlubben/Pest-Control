@@ -57,6 +57,13 @@ later. Set `CHROME_PATH=/path/to/chrome` if Chrome isn't found automatically.
   **Replace it with your real domain before launch** (a single find-and-replace).
 - **Legal pages** — `privacy.html`, `terms.html`, and `cookies.html` are sample text
   with `[bracketed placeholders]`. Fill them in and have them reviewed by counsel.
+- **Header & footer** — shared across all pages. Edit once in
+  [`partials/header.html`](partials/header.html) / [`partials/footer.html`](partials/footer.html),
+  then run **`npm run build`** to sync them into every page (output stays plain static
+  HTML; the active nav item is stamped per page automatically).
+- **Images** — the home illustration is [`assets/img/protected-home.svg`](assets/img/protected-home.svg).
+  Photo slots use `.media` with a branded placeholder — swap in a real photo by adding
+  `<img src="…" alt="…">` inside the `.media` element (e.g. the "Team photo" slot on About).
 - **Plans** — plan content lives in the `.plan` cards in `index.html` and `plans.html`.
   The booking plan options are the `<label class="choice choice-plan">` blocks in
   `booking.html`.

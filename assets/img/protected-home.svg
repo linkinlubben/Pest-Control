@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="A home and yard inside a treated perimeter">
+  <defs>
+    <clipPath id="frame"><rect x="0" y="0" width="640" height="480" rx="26"/></clipPath>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EAF2FB"/>
+      <stop offset="1" stop-color="#F6FAFF"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <!-- sky -->
+    <rect x="0" y="0" width="640" height="480" fill="url(#sky)"/>
+
+    <!-- sun -->
+    <circle cx="536" cy="104" r="44" fill="#F3DCA6"/>
+    <circle cx="536" cy="104" r="44" fill="none" stroke="#EBCB86" stroke-width="2" stroke-dasharray="3 6"/>
+
+    <!-- clouds -->
+    <g fill="#FFFFFF">
+      <ellipse cx="150" cy="96" rx="46" ry="20"/>
+      <ellipse cx="186" cy="86" rx="30" ry="18"/>
+      <ellipse cx="430" cy="70" rx="38" ry="16"/>
+    </g>
+
+    <!-- ground -->
+    <path d="M0 356 Q 320 322 640 356 L640 480 L0 480 Z" fill="#E3F3EA"/>
+    <path d="M0 356 Q 320 322 640 356" fill="none" stroke="#CBE9D8" stroke-width="3"/>
+
+    <!-- back shrubs -->
+    <g fill="#CFE9DA">
+      <circle cx="70" cy="352" r="30"/>
+      <circle cx="598" cy="356" r="26"/>
+    </g>
+
+    <!-- house -->
+    <g>
+      <!-- chimney -->
+      <rect x="392" y="150" width="26" height="52" rx="4" fill="#22568F"/>
+      <!-- roof -->
+      <path d="M232 214 L330 138 L428 214 Z" fill="#2C6BB6"/>
+      <path d="M232 214 L330 138 L428 214" fill="none" stroke="#22568F" stroke-width="4" stroke-linejoin="round"/>
+      <!-- body -->
+      <rect x="258" y="212" width="144" height="146" fill="#FFFFFF"/>
+      <rect x="258" y="212" width="144" height="146" fill="none" stroke="#0C2340" stroke-width="4"/>
+      <!-- door -->
+      <rect x="306" y="292" width="48" height="66" rx="3" fill="#2C6BB6"/>
+      <circle cx="345" cy="326" r="3.4" fill="#EAF2FB"/>
+      <!-- windows -->
+      <rect x="276" y="240" width="34" height="34" rx="3" fill="#EAF2FB" stroke="#0C2340" stroke-width="3"/>
+      <path d="M293 240v34M276 257h34" stroke="#0C2340" stroke-width="2"/>
+      <rect x="350" y="240" width="34" height="34" rx="3" fill="#EAF2FB" stroke="#0C2340" stroke-width="3"/>
+      <path d="M367 240v34M350 257h34" stroke="#0C2340" stroke-width="2"/>
+    </g>
+
+    <!-- front shrubs -->
+    <g>
+      <circle cx="238" cy="352" r="26" fill="#1FA971"/>
+      <circle cx="262" cy="360" r="20" fill="#38B98A"/>
+      <circle cx="418" cy="356" r="24" fill="#1FA971"/>
+      <circle cx="398" cy="362" r="18" fill="#38B98A"/>
+    </g>
+
+    <!-- treated perimeter (signature) -->
+    <path d="M120 402 Q 320 362 520 402" fill="none" stroke="#2C6BB6" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 9"/>
+
+    <!-- shield / all-clear badge -->
+    <g transform="translate(452 250)">
+      <path d="M0 -26 L22 -17 V2 C22 17 12 27 0 32 C-12 27 -22 17 -22 2 V-17 Z" fill="#1FA971"/>
+      <path d="M-9 2 L-2 10 L11 -6" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- pests kept outside the perimeter -->
+    <g fill="#9AA9BC">
+      <g transform="translate(70 430)">
+        <ellipse cx="0" cy="0" rx="6" ry="9"/><circle cx="0" cy="-12" r="3.6"/>
+        <path d="M-6 -3 -13 -7M-6 3 -13 3M6 -3 13 -7M6 3 13 3" stroke="#9AA9BC" stroke-width="2.2" stroke-linecap="round"/>
+      </g>
+      <g transform="translate(572 432)">
+        <ellipse cx="0" cy="0" rx="5" ry="8"/><circle cx="0" cy="-10" r="3"/>
+        <path d="M-5 -2 -11 -6M-5 3 -11 3M5 -2 11 -6M5 3 11 3" stroke="#9AA9BC" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    </g>
+  </g>
+</svg>
