@@ -1,0 +1,17 @@
+{
+  "name": "perimeter-pest-control",
+  "version": "1.0.0",
+  "description": "Perimeter — pest control website template",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "python3 -m http.server 8000",
+    "verify": "node scripts/verify.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.3.0"
+  }
+}

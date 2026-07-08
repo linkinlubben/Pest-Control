@@ -29,6 +29,21 @@ python3 -m http.server 8000   # then visit http://localhost:8000
 Fonts (Bricolage Grotesque, Instrument Sans, IBM Plex Mono) load from Google Fonts;
 offline they fall back to system sans/mono gracefully.
 
+## Verify (screenshots + checks)
+
+A Puppeteer-driven loop renders and tests the whole site:
+
+```bash
+npm install      # once (uses your installed Chrome via puppeteer-core — no big download)
+npm run verify
+```
+
+It screenshots every page at **mobile / tablet / desktop** into `shots/` for eyeballing,
+and asserts: no console errors, no horizontal overflow, no broken internal links or
+assets, both forms reach success (and an empty contact submit is blocked), and the
+reviews filter works. Exit code is non-zero on any failure, so it drops straight into CI
+later. Set `CHROME_PATH=/path/to/chrome` if Chrome isn't found automatically.
+
 ## Customize
 
 - **Brand & colors** — every color, font, radius, and spacing value is a CSS custom
