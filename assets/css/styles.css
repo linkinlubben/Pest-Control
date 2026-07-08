@@ -275,7 +275,7 @@ h1, h2, h3, h4 {
 /* =========================================================================
    Hero — the Perimeter
    ========================================================================= */
-.hero { position: relative; padding-block: clamp(3rem, 7vw, 6rem) clamp(3.5rem, 8vw, 7rem); overflow: hidden; }
+.hero { position: relative; padding-block: clamp(3rem, 7vw, 6rem) clamp(3.5rem, 8vw, 7rem); overflow: hidden; background: linear-gradient(90deg, var(--brand-tint) 0%, #ffffff 58%); }
 .hero-grid {
   display: grid; grid-template-columns: 1fr 1.12fr; gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
