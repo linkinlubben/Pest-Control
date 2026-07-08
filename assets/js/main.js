@@ -150,3 +150,25 @@
   };
 })();
 
+/* =========================================================================
+   Auto-format phone inputs as 123-456-7890 while typing
+   ========================================================================= */
+(function () {
+  "use strict";
+  function format(value) {
+    var d = value.replace(/\D/g, "").slice(0, 10);
+    if (d.length > 6) return d.slice(0, 3) + "-" + d.slice(3, 6) + "-" + d.slice(6);
+    if (d.length > 3) return d.slice(0, 3) + "-" + d.slice(3);
+    return d;
+  }
+  document.querySelectorAll('input[type="tel"]').forEach(function (el) {
+    el.addEventListener("input", function () {
+      var atEnd = el.selectionStart === el.value.length;
+      var formatted = format(el.value);
+      if (formatted === el.value) return;
+      el.value = formatted;
+      if (atEnd) el.setSelectionRange(formatted.length, formatted.length);
+    });
+  });
+})();
+
