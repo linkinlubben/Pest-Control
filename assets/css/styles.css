@@ -277,14 +277,14 @@ h1, h2, h3, h4 {
    ========================================================================= */
 .hero { position: relative; padding-block: clamp(3rem, 7vw, 6rem) clamp(3.5rem, 8vw, 7rem); overflow: hidden;
   background: linear-gradient(90deg,
-    #C7DAF2 0% 12.5%,
-    #CFDFF4 12.5% 25%,
-    #D7E5F6 25% 37.5%,
-    #DFEAF8 37.5% 50%,
-    #E7EFF9 50% 62.5%,
-    #EFF4FB 62.5% 75%,
-    #F7FAFD 75% 87.5%,
-    #FFFFFF 87.5% 100%); }
+    #C7DAF2 0% 6.25%,     #CBDCF3 6.25% 12.5%,
+    #CEDFF4 12.5% 18.75%, #D2E1F5 18.75% 25%,
+    #D6E4F5 25% 31.25%,   #DAE6F6 31.25% 37.5%,
+    #DDE9F7 37.5% 43.75%, #E1EBF8 43.75% 50%,
+    #E5EEF9 50% 56.25%,   #E9F0FA 56.25% 62.5%,
+    #ECF3FB 62.5% 68.75%, #F0F5FC 68.75% 75%,
+    #F4F8FC 75% 81.25%,   #F8FAFD 81.25% 87.5%,
+    #FBFDFE 87.5% 93.75%, #FFFFFF 93.75% 100%); }
 .hero-grid {
   display: grid; grid-template-columns: 1fr 1.12fr; gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
